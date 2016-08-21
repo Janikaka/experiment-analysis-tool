@@ -45,7 +45,7 @@ export class ExperimentServerService {
              .then(this.extractData)
   }
 
-  getResultByNestedLevel(level: number): Promise<Result> {
+  getResultByNestedLevel(level: any): Promise<Result> {
     let url = 'http://127.0.0.1:8081/';
     let headers = new Headers();
     headers.append('nestedLevel', level);
@@ -64,14 +64,14 @@ export class ExperimentServerService {
         .then(this.extractData);
   }
 
-  createFile(filename: String, result: Result) {
-    let json = {"filename": filename, "result": result};
+  createFile(filename: String, result: Result, nestedLevel: number) {
+    let json = {"filename": filename, "result": result, "nestedLevel" : nestedLevel};
     let body = JSON.stringify(json);
     let options = new RequestOptions({body: body});
     let url = 'http://127.0.0.1:8081/file';
-    this.http.post(url, options)
+    return this.http.post(url, options)
         .toPromise()
-        .then(this.extractData);
+        .then(res => res);
   }
 
 

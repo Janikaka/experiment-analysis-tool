@@ -1,1 +1,0 @@
-{"users":[{"id":1,"username":"First user","experimentgroup":1,"dataitems":[{"id":3,"startDatetime":"2016-08-19 09:02:33","endDatetime":"2016-08-19 10:02:32","value":30,"key":"key3"}]},{"id":2,"username":"Second user","experimentgroup":2,"dataitems":[{"id":4,"startDatetime":"2016-08-19 11:02:32","endDatetime":"2016-08-19 12:02:32","value":40,"key":"key4"}]}]}

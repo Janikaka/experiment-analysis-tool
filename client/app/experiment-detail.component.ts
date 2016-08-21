@@ -17,6 +17,7 @@ export class ExperimentDetailComponent implements OnInit, OnDestroy {
   sub: any;
   result: Result;
   currentResult: any;
+  resultImg: String;
 
   constructor(
     private experimentServerService: ExperimentServerService,
@@ -70,7 +71,12 @@ export class ExperimentDetailComponent implements OnInit, OnDestroy {
 
   create() {
     let filename = document.getElementById("filename")["value"];
-    this.experimentServerService.createFile(filename, this.currentResult);
+    this.experimentServerService.createFile(filename, this.currentResult, this.currNestedLevel)
+      .then(res => {
+          let status = res.status;
+          //showing results?
+          window.history.back();
+      });
   }
 
 }

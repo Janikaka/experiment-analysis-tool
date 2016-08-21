@@ -65,7 +65,12 @@ var ExperimentDetailComponent = (function () {
     };
     ExperimentDetailComponent.prototype.create = function () {
         var filename = document.getElementById("filename")["value"];
-        this.experimentServerService.createFile(filename, this.currentResult);
+        this.experimentServerService.createFile(filename, this.currentResult, this.currNestedLevel)
+            .then(function (res) {
+            var status = res.status;
+            //showing results?
+            window.history.back();
+        });
     };
     ExperimentDetailComponent = __decorate([
         core_1.Component({

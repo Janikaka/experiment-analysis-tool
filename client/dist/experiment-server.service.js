@@ -56,14 +56,14 @@ var ExperimentServerService = (function () {
             .toPromise()
             .then(this.extractData);
     };
-    ExperimentServerService.prototype.createFile = function (filename, result) {
-        var json = { "filename": filename, "result": result };
+    ExperimentServerService.prototype.createFile = function (filename, result, nestedLevel) {
+        var json = { "filename": filename, "result": result, "nestedLevel": nestedLevel };
         var body = JSON.stringify(json);
         var options = new http_1.RequestOptions({ body: body });
         var url = 'http://127.0.0.1:8081/file';
-        this.http.post(url, options)
+        return this.http.post(url, options)
             .toPromise()
-            .then(this.extractData);
+            .then(function (res) { return res; });
     };
     ExperimentServerService.prototype.extractData = function (res) {
         var body = res.json();

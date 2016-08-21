@@ -49,12 +49,29 @@ app.post('/file', function(req, res) {
 	var json = JSON.parse(req.body["body"]);
 	var filename = json["filename"];
 	var result = json["result"];
-	fs.writeFile(__dirname + "/files/" + filename, JSON.stringify(result), function(err) {
+	var nestedLevel = json["nestedLevel"];
+	fs.writeFile(__dirname + "/files/" + filename + ".json", JSON.stringify(result, null, '\t'), function(err) {
 		if(err) {
 			console.log(err);
 		}
 		print("File " + filename + " is ready.");
 	})
+	if(nestedLevel == 1 || nestedLevel == 2) {
+		fs.readFile(__dirname + "/files/level1.R", 'utf8', function(err, data) {
+			if(err) {
+				console.log(err);
+			}
+			var newFile = "filename <- '" + filename + "'\n";
+			newFile += data;
+			fs.writeFile(__dirname + "/files/" + filename + ".R", newFile, function(err) {
+				if(err) {
+					console.log(err);
+				}
+				print("R file is ready");
+				res.sendStatus(200);
+			});
+		});
+	}
 });
 
 app.post('/', function(req, res) {
@@ -78,7 +95,6 @@ app.get('/', function(req, response) {
 				var experimentgroup = res[i].experimentgroup;
 				result.push({"key": key, "value": value, "experimentgroup": experimentgroup});
 			}
-			print(result);
 			response.send({"data": {"dataitems": result}});
 		});
 	} else if(level == 2) {
@@ -86,7 +102,6 @@ app.get('/', function(req, response) {
 			if(err) {
 				console.log(err);
 			}
-			print(res);
 			response.send({"data": {"dataitems": res}});
 		});
 	} else if(level == 3) {
@@ -110,7 +125,6 @@ app.get('/', function(req, response) {
 				if(err) {
 					console.log(err);
 				}
-				print(result);
 				response.send({"data": {"users": result}});
 			});
 		});
@@ -135,7 +149,6 @@ app.get('/', function(req, response) {
 				if(err) {
 					console.log(err);
 				}
-				print(experimentgroups);
 				response.send({"data": {"experimentgroups": experimentgroups}});
 			})
 		});
