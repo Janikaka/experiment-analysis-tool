@@ -1,0 +1,29 @@
+<div *ngIf="experiment">
+  <h2>{{experiment.name}}</h2>
+    <p><b>Id: </b>{{experiment.id}}</p>
+    <p><b>Name: </b>{{experiment.name}}</p>
+    <p><b>Size: </b>{{experiment.size}}</p>
+    <p><b>Status: </b>{{experiment.status}}</p>
+    <p><b>Start datetime: </b>{{experiment.startDatetime}}</p>
+    <p><b>End datetime: </b>{{experiment.endDatetime}}</p>
+    <b>Experiment groups:</b>
+    <ul *ngFor="let experimentgroup of experiment.experimentgroups">
+    	<li>
+            <p>
+                <b>Name: </b> {{experimentgroup.name}}
+            </p>
+            <b>Configurations:</b>
+            <ul *ngFor="let conf of experimentgroup.configurations">
+                <li>
+                    <p><b>Key: </b> {{conf.key}}<b>. Value: </b> {{conf.value}}</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <p><b>Number of dataitems: </b>{{experiment.totalDataitems}}</p>
+    <p>
+        <b><a href={{data}}>Experiment data</a></b>
+    </p>
+    <br>
+    <button (click)="goBack()">Back</button>
+</div>

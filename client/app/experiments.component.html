@@ -1,0 +1,28 @@
+<h2>Experiments</h2>
+<ul class="experiments">
+  <h3>Running:</h3>
+  <li *ngFor="let experiment of experiments">
+    <div *ngIf="experiment.status === 'running'">
+      <span (click)="showMetadata(experiment.id)" class="badge">{{experiment.id}}</span>
+      <span (click)="showMetadata(experiment.id)">{{experiment.name}}</span>
+    </div>
+  </li>
+</ul>
+<ul class="experiments">
+  <h3>Finished:</h3>
+  <li *ngFor="let experiment of experiments">
+    <div *ngIf="experiment.status === 'finished'">
+      <span (click)="showMetadata(experiment.id)" class="badge">{{experiment.id}}</span>
+      <span (click)="showMetadata(experiment.id)">{{experiment.name}}</span>
+    </div>
+  </li>
+</ul>
+<ul class="experiments">
+  <h3>Waiting:</h3>
+  <li *ngFor="let experiment of experiments">
+    <div *ngIf="experiment.status === 'waiting'">
+      <span (click)="showMetadata(experiment.id)" class="badge">{{experiment.id}}</span>
+      <span (click)="showMetadata(experiment.id)">{{experiment.name}}</span>
+    </div>
+  </li>
+</ul>

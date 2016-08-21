@@ -1,0 +1,28 @@
+<table>
+	<tr>
+		<td>
+			<div class="nestedLevel">
+				<p><b>Select nested level</b> (how nested JSON will be)</p>
+				<select id="nestedLevelSelect">
+					<option *ngFor="let level of nestedLevels" (click)="selectLevel()">
+						{{level}}
+					</option>
+				</select>
+			</div>
+			<div>
+				<b>Filename: </b><br><br>
+				<input type="text" id="filename" 
+				placeholder="Enter name for JSON file">
+			</div>
+			<br><br><br>
+			<button (click)="create()">Create</button>
+		</td>
+
+		<td id="currentResult">
+			<div *ngIf="result">
+				<pre>{{currentResult | json}}</pre>
+			</div>
+		</td>
+	</tr>
+</table>
+
