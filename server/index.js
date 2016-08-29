@@ -75,6 +75,7 @@ app.post('/file', function(req, res) {
 });
 
 app.post('/', function(req, res) {
+	createDatabase();
 	var result = JSON.parse(req.body["body"]);
 	addResultToDB(result);
 
