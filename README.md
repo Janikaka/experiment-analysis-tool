@@ -2,4 +2,6 @@
 
 Server fetches JSON experiment data from the Experiment server (https://github.com/Janikaka/experiment-server).
 UI represents JSON data in different flattened forms.
-For the two most flattened JSON forms the analysis tool creates runnable R code for data visualization.
+For the two most flattened JSON forms the analysis tool creates runnable R code for data visualization.<br>
+
+<b>Caution!</b> Do not take the database model seriously. The code is only temporary.
